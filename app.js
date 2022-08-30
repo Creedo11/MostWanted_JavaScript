@@ -148,7 +148,8 @@ function displayPerson(person) {
     personInfo += `Eye Color: ${person.eyeColor}\n`;
     personInfo += `Occupation: ${person.occupation}\n`;
    
-   
+    // let personInfo = JSON.stringify(person) //not sure how to CLEAN up the look of that stringify, so I displayed info manually instead. 
+
     //! TODO #1a: finish getting the rest of the information to display //////////////////////////////////////////
     alert(personInfo);
 }
