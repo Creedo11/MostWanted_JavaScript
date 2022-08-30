@@ -138,17 +138,17 @@ function displayPeople(people) {
  * @param {Object} person       A singular object.
  */
 function displayPerson(person) {
-    let personInfo = `First Name: ${person.firstName}\n`;
-    personInfo += `Last Name: ${person.lastName}\n`;
-    personInfo += `ID: ${person.id}\n`;
-    personInfo += `Gender: ${person.gender}\n`;
-    personInfo += `DOB: ${person.dob}\n`;
-    personInfo += `Height: ${person.height}\n`;
-    personInfo += `Weight: ${person.weight}\n`;
-    personInfo += `Eye Color: ${person.eyeColor}\n`;
-    personInfo += `Occupation: ${person.occupation}\n`;
+    // let personInfo = `First Name: ${person.firstName}\n`;
+    // personInfo += `Last Name: ${person.lastName}\n`;
+    // personInfo += `ID: ${person.id}\n`;
+    // personInfo += `Gender: ${person.gender}\n`;
+    // personInfo += `DOB: ${person.dob}\n`;
+    // personInfo += `Height: ${person.height}\n`;
+    // personInfo += `Weight: ${person.weight}\n`;
+    // personInfo += `Eye Color: ${person.eyeColor}\n`;
+    // personInfo += `Occupation: ${person.occupation}\n`;
    
-    // let personInfo = JSON.stringify(person) //not sure how to CLEAN up the look of that stringify, so I displayed info manually instead. 
+    // let personInfo = JSON.stringify(person, null, 3) //not sure how to remove parent and currentSpouse elements
 
     //! TODO #1a: finish getting the rest of the information to display //////////////////////////////////////////
     alert(personInfo);
