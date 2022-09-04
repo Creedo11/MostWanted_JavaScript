@@ -205,3 +205,16 @@ function findSiblings(person, people){
     })
     return newArray;
 }
+
+function findPersonFamily(person, people){
+    let newArray = ""
+    let siblings = findSiblings(person, people)
+
+
+    if(sibling != null) {
+        for(let i = 0; i < siblings.length; i ++){
+            newArray += `siblings: ${siblings[i].firstName} ${siblings[i].lastName}`
+        }
+    }
+    return newArray
+}
