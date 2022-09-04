@@ -138,15 +138,15 @@ function displayPeople(people) {
  * @param {Object} person       A singular object.
  */
 function displayPerson(person) {
-    // let personInfo = `First Name: ${person.firstName}\n`;
-    // personInfo += `Last Name: ${person.lastName}\n`;
-    // personInfo += `ID: ${person.id}\n`;
-    // personInfo += `Gender: ${person.gender}\n`;
-    // personInfo += `DOB: ${person.dob}\n`;
-    // personInfo += `Height: ${person.height}\n`;
-    // personInfo += `Weight: ${person.weight}\n`;
-    // personInfo += `Eye Color: ${person.eyeColor}\n`;
-    // personInfo += `Occupation: ${person.occupation}\n`;
+    let personInfo = `First Name: ${person.firstName}\n`;
+    personInfo += `Last Name: ${person.lastName}\n`;
+    personInfo += `ID: ${person.id}\n`;
+    personInfo += `Gender: ${person.gender}\n`;
+    personInfo += `DOB: ${person.dob}\n`;
+    personInfo += `Height: ${person.height}\n`;
+    personInfo += `Weight: ${person.weight}\n`;
+    personInfo += `Eye Color: ${person.eyeColor}\n`;
+    personInfo += `Occupation: ${person.occupation}\n`;
    
     // let personInfo = JSON.stringify(person, null, 3) //not sure how to remove parent and currentSpouse elements
 
@@ -194,5 +194,14 @@ function chars(input) {
 
 //////////////////////////////////////////* End Of Starter Code *//////////////////////////////////////////
 // Any additional functions can be written below this line 👇. Happy Coding! 😁
-
-
+function findSiblings(person, people){
+    let newArray = people.filter(function (el){
+        if (person.id == el.id){
+            return false;
+        }
+        if(person.parents.includes(el.parents[0]) || person.parents.includes(el.parents[1])) {
+            return true;
+        };
+    })
+    return newArray;
+}
