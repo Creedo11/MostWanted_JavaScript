@@ -208,9 +208,6 @@ function findSiblings(person, people){
 
 function findParents(person, people){
     let newArray = people.filter(function (el){
-        if (person.id == el.id){
-            return false;
-        }
         if(person.parents.includes(el.id)){
             return true;
         };
@@ -220,9 +217,6 @@ function findParents(person, people){
 
 function findSpouse(person, people){
     let newArray = people.filter(function (el){
-        if (person.id == el.id){
-            return false;
-        }
         if(person.currentSpouse == el.id){
             return true;
         };
@@ -237,8 +231,8 @@ function findPersonFamily(person, people){
     let siblings = findSiblings(person, people)
 
     if(spouse != null) {
-        for(let i = 0; i < siblings.length; i ++){
-        newArray += `Spouse: ${spouse[i].firstName} ${spouse[i].lastName}\n`;
+        for(let i = 0; i < spouse.length; i ++){
+            newArray += `Spouse: ${spouse[i].firstName} ${spouse[i].lastName}\n`;
         }
     }
     if(parents != null) {
