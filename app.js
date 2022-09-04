@@ -206,14 +206,32 @@ function findSiblings(person, people){
     return newArray;
 }
 
+function findParents(person, people){
+    let newArray = people.filter(function (el){
+        if (person.id == el.id){
+            return false;
+        }
+        if(person.parents.includes(el.id)){
+            return true;
+        };
+    })
+    return newArray
+}
+
+
 function findPersonFamily(person, people){
     let newArray = ""
     let siblings = findSiblings(person, people)
+    let parents = findParents(person, people)
 
-
-    if(sibling != null) {
+    if(siblings != null) {
         for(let i = 0; i < siblings.length; i ++){
-            newArray += `siblings: ${siblings[i].firstName} ${siblings[i].lastName}`
+            newArray += `Sibling: ${siblings[i].firstName} ${siblings[i].lastName}\n`;
+        }
+    }
+    if(parents != null) {
+        for(let i = 0; i < parents.length; i ++){
+            newArray += `Parent: ${parents[i].firstName} ${parents[i].lastName}\n`;
         }
     }
     return newArray
