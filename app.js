@@ -105,7 +105,7 @@ function searchByName(people) {
     let firstName = promptFor("What is the person's first name?", chars);
     let lastName = promptFor("What is the person's last name?", chars);
 
-    // The foundPerson value will be of type Array. Recall that .filter() ALWAYS returns an array.
+                                                // The foundPerson value will be of type Array. Recall that .filter() ALWAYS returns an array.
     let foundPerson = people.filter(function (person) {
         if (person.firstName === firstName && person.lastName === lastName) {
             return true;
@@ -188,7 +188,7 @@ function yesNo(input) {
  * @returns {Boolean}           Default validation -- no logic yet.
  */
 function chars(input) {
-    return true; // Default validation only
+    return true;
 }
 // End of chars()
 
@@ -269,4 +269,32 @@ function findPersonDescendants(person, people){
         }
     }
     return newArray
+}
+///////////////////* End of search by name code */////////////////////////
+
+
+function searchByTraits(people) {
+    let searchType = promptFor("Would you like to search by a single trait or multiple.\n Type single or multiple.", singleMultiple)
+    .toLowerCase();
+    let searchResults;
+    switch (searchType) {
+        case "single":
+            searchResults = searchBySingleTrait(people);
+            break;
+        case "multiple":
+            searchResults = searchByMultipleTraits(people);
+            break;
+        default:
+            app(people);
+            break;
+    }
+    mainMenu(searchResults, people);
+}
+
+function singleMultiple(input) {
+    return input.toLowerCase() === "single" || input.toLowerCase() === "multiple";
+}
+
+function searchBySingleTrait(people){
+    let singleTrait = promptFor("Which trait do you want to search by?\n Type gender, height, weight, eyeColor, or occupation.")
 }
