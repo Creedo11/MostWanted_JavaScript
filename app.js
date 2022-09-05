@@ -249,3 +249,24 @@ function findPersonFamily(person, people){
 }
 
 
+function findChildren(person, people){
+    let newArray = people.filter(function (el){
+        if(el.parents.includes(person.id)){
+            return true;
+        };
+    })
+    return newArray
+}
+
+
+function findPersonDescendants(person, people){
+    let newArray = ""
+    let children = findChildren(person, people)
+
+    if(children != null){
+        for(let i = 0; i < children.length; i ++){
+            newArray += `Child: ${children[i].firstName} ${children[i].lastName}\n`;
+        }
+    }
+    return newArray
+}
