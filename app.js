@@ -288,13 +288,92 @@ function searchByTraits(people) {
             app(people);
             break;
     }
-    mainMenu(searchResults, people);
 }
 
 function singleMultiple(input) {
     return input.toLowerCase() === "single" || input.toLowerCase() === "multiple";
 }
 
-function searchBySingleTrait(people){
-    let singleTrait = promptFor("Which trait do you want to search by?\n Type gender, height, weight, eyeColor, or occupation.")
+function traitType(input) {
+    return input.toLowerCase() === "gender" || input.toLowerCase() === "height" || input.toLowerCase() === "weight" || input.toLowerCase() === "eye color" || input.toLowerCase() === "occupation";
 }
+
+function findGender(people){
+    let genderTrait = promptFor("Pleae type male or famale", chars)
+    let foundPersons = people.filter(function (el){
+        if(el.gender.includes(genderTrait)){
+                return true;
+            }
+        })
+    return foundPersons
+}
+
+function findHeight(people){
+    let genderTrait = promptFor("Please type in a numeric value in inches.", chars)
+    let foundPersons = people.filter(function (el){
+        if(el.height === (parseInt(genderTrait))){
+                return true;
+            }
+        })
+    return foundPersons
+}
+
+function findWeight(people){
+    let genderTrait = promptFor("Please type in a numeric value in pounds.", chars)
+    let foundPersons = people.filter(function (el){
+        if(el.weight === (parseInt(genderTrait))){
+                return true;
+            }
+        })
+    return foundPersons
+}
+
+function findEyeColor(people){
+    let genderTrait = promptFor("Please type in a color.\nChoose from: brown, black, hazel, blue, or green.", chars)
+    let foundPersons = people.filter(function (el){
+        if(el.eyeColor.includes(genderTrait)){
+                return true;
+            }
+        })
+    return foundPersons
+}
+
+function findOccupation(people){
+    let genderTrait = promptFor("Pleae type in an occupation.\n Choose from: programmer, assistant, landscaper, nurse, student, architect, doctor, or politician", chars)
+    let foundPersons = people.filter(function (el){
+        if(el.occupation.includes(genderTrait)){
+                return true;
+            }
+        })
+    return foundPersons
+}
+
+function searchBySingleTrait(people){ 
+    let trait = promptFor("Which trait do you want to search by?\n Type gender, height, weight, eye color, or occupation.", traitType).toLowerCase();
+    
+    let searchResults;
+    switch (trait) {
+        case "gender":
+            searchResults = findGender(people);
+            alert(searchResults)
+            break;
+        case "height":
+            searchResults = findHeight(people);
+            alert(searchResults)
+            break;
+        case "weight":
+            searchResults = findWeight(people);
+            alert(searchResults)
+            break;
+        case "eye color":
+            searchResults = findEyeColor(people);
+            alert(searchResults)
+            break;
+        case "occupation":
+            searchResults = findOccupation(people);
+            alert(searchResults)
+            break;
+    }
+}
+
+  // let multipleTraits = promptFor("Which traits do you want to search by?\n Type any combination of gender, height, weight, eye color, and occupation.", traitType).toLowerCase();
