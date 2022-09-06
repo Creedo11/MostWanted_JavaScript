@@ -385,4 +385,6 @@ function findOccupation(people){
     return newArray
 }
 
-  // let multipleTraits = promptFor("Which traits do you want to search by?\n Type any combination of gender, height, weight, eye color, and occupation.", traitType).toLowerCase();
+function searchByMultipleTraits(people){
+    let multipleTraits = promptFor("Which traits do you want to search by?\n Type any combination of the following separating each by a comma: \ngender, height, weight, eye color, occupation.", traitType).toLowerCase();
+}
