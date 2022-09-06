@@ -27,11 +27,13 @@ function app(people) {
     switch (searchType) {
         case "yes":
             searchResults = searchByName(people);
+            mainMenu(searchResults, people);
             break;
         case "no":
             //! TODO #4: Declare a searchByTraits (multiple traits) function //////////////////////////////////////////
                 //! TODO #4a: Provide option to search for single or multiple //////////////////////////////////////////
             searchResults = searchByTraits(people);
+            mainMenu2(searchResults, people);
             break;
         default:
             // Re-initializes the app() if neither case was hit above. This is an instance of recursion.
@@ -39,7 +41,6 @@ function app(people) {
             break;
     }
     // Calls the mainMenu() only AFTER we find the SINGLE PERSON
-    mainMenu(searchResults, people);
 }
 // End of app()
 
@@ -58,6 +59,7 @@ function mainMenu(person, people) {
         // Restarts app() from the very beginning
         return app(people);
     }
+
     let displayOption = prompt(
         `Found ${person[0].firstName} ${person[0].lastName}. Do you want to know their 'info', 'family', or 'descendants'?\nType the option you want or type 'restart' or 'quit'.`
     );
@@ -270,8 +272,20 @@ function findPersonDescendants(person, people){
     }
     return newArray
 }
-///////////////////* End of search by name code */////////////////////////
+///////////////////* End of searchByName code */////////////////////////
 
+function mainMenu2(person, people){
+    let newArray = ""
+    if (!person[0]) {
+        alert("Could not find a match.");
+        return app(people);
+    }
+    if (person[0]){
+        for(let i =0; i <person.length; i ++){
+            newArray += `${person[i].firstName} ${person[i].lastName}\n`
+    }}
+    alert (newArray)
+}
 
 function searchByTraits(people) {
     let searchType = promptFor("Would you like to search by a single trait or multiple.\n Type single or multiple.", singleMultiple)
@@ -284,15 +298,38 @@ function searchByTraits(people) {
         case "multiple":
             searchResults = searchByMultipleTraits(people);
             break;
-        default:
-            app(people);
-            break;
     }
+    return searchResults
 }
 
 function singleMultiple(input) {
     return input.toLowerCase() === "single" || input.toLowerCase() === "multiple";
 }
+
+function searchBySingleTrait(people){ 
+    let trait = promptFor("Which trait do you want to search by?\n Type gender, height, weight, eye color, or occupation.", traitType).toLowerCase();
+    
+    let results;
+    switch (trait) {
+        case "gender":
+            results = findGender(people);
+            break;
+        case "height":
+            results = findHeight(people);
+            break;
+        case "weight":
+            results = findWeight(people);
+            break;
+        case "eye color":
+            results = findEyeColor(people);
+            break;
+        case "occupation":
+            results = findOccupation(people);
+            break;
+    }
+    return results
+}
+
 
 function traitType(input) {
     return input.toLowerCase() === "gender" || input.toLowerCase() === "height" || input.toLowerCase() === "weight" || input.toLowerCase() === "eye color" || input.toLowerCase() === "occupation";
@@ -300,80 +337,52 @@ function traitType(input) {
 
 function findGender(people){
     let genderTrait = promptFor("Pleae type male or famale", chars)
-    let foundPersons = people.filter(function (el){
-        if(el.gender.includes(genderTrait)){
+    let newArray = people.filter(function (el){
+        if(el.gender === (genderTrait)){
                 return true;
             }
         })
-    return foundPersons
+    return newArray
 }
 
 function findHeight(people){
     let genderTrait = promptFor("Please type in a numeric value in inches.", chars)
-    let foundPersons = people.filter(function (el){
+    let newArray = people.filter(function (el){
         if(el.height === (parseInt(genderTrait))){
                 return true;
             }
         })
-    return foundPersons
+    return newArray
 }
 
 function findWeight(people){
     let genderTrait = promptFor("Please type in a numeric value in pounds.", chars)
-    let foundPersons = people.filter(function (el){
+    let newArray = people.filter(function (el){
         if(el.weight === (parseInt(genderTrait))){
                 return true;
             }
         })
-    return foundPersons
+    return newArray
 }
 
 function findEyeColor(people){
     let genderTrait = promptFor("Please type in a color.\nChoose from: brown, black, hazel, blue, or green.", chars)
-    let foundPersons = people.filter(function (el){
-        if(el.eyeColor.includes(genderTrait)){
+    let newArray = people.filter(function (el){
+        if(el.eyeColor === (genderTrait)){
                 return true;
             }
         })
-    return foundPersons
+    return newArray
 }
 
 function findOccupation(people){
     let genderTrait = promptFor("Pleae type in an occupation.\n Choose from: programmer, assistant, landscaper, nurse, student, architect, doctor, or politician", chars)
-    let foundPersons = people.filter(function (el){
-        if(el.occupation.includes(genderTrait)){
+    let newArray = people.filter(function (el){
+        if(el.occupation === (genderTrait)){
                 return true;
             }
         })
-    return foundPersons
-}
-
-function searchBySingleTrait(people){ 
-    let trait = promptFor("Which trait do you want to search by?\n Type gender, height, weight, eye color, or occupation.", traitType).toLowerCase();
-    
-    let searchResults;
-    switch (trait) {
-        case "gender":
-            searchResults = findGender(people);
-            alert(searchResults)
-            break;
-        case "height":
-            searchResults = findHeight(people);
-            alert(searchResults)
-            break;
-        case "weight":
-            searchResults = findWeight(people);
-            alert(searchResults)
-            break;
-        case "eye color":
-            searchResults = findEyeColor(people);
-            alert(searchResults)
-            break;
-        case "occupation":
-            searchResults = findOccupation(people);
-            alert(searchResults)
-            break;
-    }
+    return newArray
 }
 
   // let multipleTraits = promptFor("Which traits do you want to search by?\n Type any combination of gender, height, weight, eye color, and occupation.", traitType).toLowerCase();
